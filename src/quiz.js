@@ -1242,7 +1242,8 @@
           }
           if (roles.hasControls()) {
             const head = document.getElementById(('contQzHead'));
-            if (pubbtn = document.getElementById('publishQzBt')) {
+            pubbtn = document.getElementById('publishQzBt');
+            if (pubbtn) {
               pubbtn.parentNode.removeChild(pubbtn);
             }
             const closebt = document.querySelector('#contQzHead .close');

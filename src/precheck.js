@@ -237,7 +237,6 @@ const preCheck = {
         virtualclass.precheck.createMessage(msgSelector, msg, 'information');
         virtualclass.precheck.initHandler((`${preCheck} #${this.curr}Buttons .next`), this.curr);
       }
-
     },
   },
 

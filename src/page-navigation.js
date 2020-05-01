@@ -77,18 +77,19 @@
    * So, it adjusts page navigation
    */
   pageIndexNav.prototype.adjustPageNavigation = function (currIndex, dir) {
+    let elem; let rl; let shw;
     if (dir === 'right') {
       const nodes = document.querySelectorAll('.noteIndex.shw');
       if (nodes.length) {
-        var rl = nodes[nodes.length - 1];
-        var shw = parseInt(rl.getAttribute('data-set'));
+        rl = nodes[nodes.length - 1];
+        shw = parseInt(rl.getAttribute('data-set'));
       }
 
       for (let i = shw; i < currIndex; i++) {
         if (virtualclass.currApp === 'DocumentShare') {
           virtualclass.dts.indexNav.UI.setClassPrevNext();
         }
-        var elem = document.querySelector('.noteIndex.hid.right');
+        const elem = document.querySelector('.noteIndex.hid.right');
         if (elem) {
           elem.classList.remove('hid', 'right');
           elem.classList.add('shw');
@@ -101,32 +102,32 @@
       }
 
       if (virtualclass.currApp === 'DocumentShare') {
-        var curr = virtualclass.dts.docs.currNote;
-        var index = document.querySelector(`.congrea #dcPaging #index${curr}`);
+        const curr = virtualclass.dts.docs.currNote;
+        const index = document.querySelector(`.congrea #dcPaging #index${curr}`);
         if (index && !index.classList.contains('active')) {
           index.classList.add('active');
         }
       }
     } else {
-      var nodes = document.querySelector('.noteIndex.shw');
-      if (nodes) {
-        var shw = (+nodes.getAttribute('data-set'));
+      const shwNodes = document.querySelector('.noteIndex.shw');
+      if (shwNodes) {
+        shw = (+shwNodes.getAttribute('data-set'));
       }
 
       for (let i = shw; i > currIndex; i--) {
         if (virtualclass.currApp === 'DocumentShare') {
           virtualclass.dts.indexNav.UI.setClassPrevNext();
         }
-        var nodes = document.querySelectorAll('.noteIndex.hid.left');
-        if (nodes.length) {
-          var elem = nodes[nodes.length - 1];
+        const leftNodes = document.querySelectorAll('.noteIndex.hid.left');
+        if (leftNodes.length) {
+          elem = leftNodes[leftNodes.length - 1];
         }
         if (elem) {
           elem.classList.remove('hid', 'left');
           elem.classList.add('shw');
-          var nodes = document.querySelectorAll('.noteIndex.shw');
+          const nodes = document.querySelectorAll('.noteIndex.shw');
           if (nodes.length) {
-            var rl = nodes[nodes.length - 1];
+            rl = nodes[nodes.length - 1];
           }
           if (rl) {
             rl.classList.remove('shw');
@@ -135,8 +136,8 @@
         }
       }
       if (virtualclass.currApp === 'DocumentShare') {
-        var curr = virtualclass.dts.docs.currNote;
-        var index = document.querySelector(`.congrea #dcPaging #index${curr}`);
+        const curr = virtualclass.dts.docs.currNote;
+        const index = document.querySelector(`.congrea #dcPaging #index${curr}`);
         if (index && !index.classList.contains('active')) {
           index.classList.add('active');
           index.setAttribute('selected', 'selected');

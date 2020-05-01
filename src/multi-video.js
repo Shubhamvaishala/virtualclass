@@ -3,7 +3,7 @@
  * @author  Suman Bogati <http://www.vidyamantra.com>
  */
 (function (window) {
-  let _remoteStream; let apc; let
+  let remoteStream; let apc; let
     opc;
   const userStreams = {};
   const MultiVideo = {
@@ -399,7 +399,7 @@
   function handleRemoteStreamAdded(from) {
     return function (event) {
       addRemoteVideo(event.stream, from);
-      _remoteStream = event.stream;
+      remoteStream = event.stream;
     };
   }
 

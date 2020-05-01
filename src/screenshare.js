@@ -443,7 +443,7 @@ let globalImageData = {};
             // workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=1045810
             if (typeof err === 'undefined') {
               let lastTime = stream.currentTime;
-              var polly = window.setInterval(() => {
+              const polly = window.setInterval(() => {
                 if (!stream) window.clearInterval(polly);
                 if (stream.currentTime === lastTime) {
                   window.clearInterval(polly);
@@ -631,7 +631,7 @@ let globalImageData = {};
           mandatory: {
             maxWidth: 1440,
             maxHeight: 9999,
-          }
+          },
         }};
 
         return cnavigator.mediaDevices.getDisplayMedia(videoConstratints);
