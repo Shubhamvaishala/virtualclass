@@ -993,12 +993,9 @@
         const { length } = virtualclass.poll[pollType];
         const optsCont = document.getElementById('optsTxCont');
         const opt = optsCont.querySelectorAll('#virtualclassCont #optsTxCont .opt');
-
         if (typeof index === 'undefined') {
           const { length } = virtualclass.poll[pollType];
-
           // const obj = virtualclass.poll[pollType];
-
           const question = document.getElementById('q').value;
           const opts = {};
           // const optsCont = document.getElementById('optsTxCont');
@@ -1010,7 +1007,6 @@
           const obj1 = {
             question,
             options: opts,
-
           };
           virtualclass.poll.dataToStd.question = obj1.question;
           virtualclass.poll.dataToStd.options = obj1.options;
@@ -1021,28 +1017,20 @@
             virtualclass.poll.pollSetting(type, length, next);
           }
         } else {
-          const next = true;
           const poll = virtualclass.poll[pollType][index];
-          const question = document.getElementById('q').value;
-          poll.question = question;
-
+          const qstn = document.getElementById('q').value;
+          poll.question = qstn;
           let j = 0;
           for (let i in poll.options) {
             poll.options[i] = opt[j].value;
             j++;
           }
-          // var obj1 = {
-          //   question,
-          //   options: opts,
-          //
-          // };
           virtualclass.poll[pollType][index].questiontext = document.getElementById('q').value;
-
           virtualclass.poll.dataToStd.question = virtualclass.poll[pollType][index].questiontext;
           virtualclass.poll.dataToStd.options = virtualclass.poll[pollType][index].options;
-          const flag = virtualclass.poll.etSave(index, type, setting);
+          const flag = virtualclass.poll.etSave(index, type, true);
           if (flag) {
-            virtualclass.poll.pollSetting(type, index, next);
+            virtualclass.poll.pollSetting(type, index, true);
           }
         }
 
@@ -2548,7 +2536,9 @@
             resetElem.style.display = 'none';
           }
           const footer = document.getElementById('footerCtrCont');
-          footer.parentNode.removeChild(footer);
+          if (footer) {
+            footer.parentNode.removeChild(footer);
+          }
         },
         editPoll(pollType, index) {
           virtualclass.poll.UI.loadContent(pollType, index);
@@ -2636,9 +2626,12 @@
 
           const template = virtualclass.getTemplate('setting-modal', 'poll');
           const modal = document.querySelector('#editPollModal');
-          while (modal.firstChild) {
-            modal.removeChild(modal.firstChild);
+          if (modal) {
+            while (modal.firstChild) {
+              modal.removeChild(modal.firstChild);
+            }
           }
+          
           modal.insertAdjacentHTML('beforeend', template({ time: range(1, 60) }));
           this.settingUIBody(index, label);
         },
